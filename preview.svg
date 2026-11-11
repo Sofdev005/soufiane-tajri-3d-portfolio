@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#dcebd0"/>
+      <stop offset="1" stop-color="#f5eccd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <circle cx="986" cy="145" r="67" fill="#f4bf72"/>
+  <path d="M0 430c210-120 375-38 568-68 222-35 365-127 632-50v318H0z" fill="#adc390"/>
+  <path d="M0 510c245-96 426-12 647-55 192-37 370-87 553-28v203H0z" fill="#789a68"/>
+  <rect x="95" y="106" width="690" height="360" rx="38" fill="#fffaf0" fill-opacity=".92"/>
+  <text x="150" y="205" fill="#849177" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5">A PORTFOLIO, WITH ROOM TO ROAM</text>
+  <text x="145" y="310" fill="#344435" font-family="Georgia,serif" font-size="78" font-weight="700">Soufiane Tajri</text>
+  <text x="150" y="375" fill="#627d55" font-family="Arial,sans-serif" font-size="34">Game designer &amp; developer</text>
+  <text x="910" y="470" font-family="Arial,sans-serif" font-size="116">🐐</text>
+</svg>

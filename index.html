@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#17161b">
+    <meta name="description" content="Explore the game design and development work of Soufiane Tajri in an interactive campground and lakeside world.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Soufiane Tajri — A little world of work">
+    <meta property="og:description" content="A cozy, interactive portfolio for game designer and developer Soufiane Tajri.">
+    <meta property="og:url" content="https://soufiane-tajri.netlify.app/">
+    <meta property="og:image" content="https://soufiane-tajri.netlify.app/preview.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Soufiane Tajri — A little world of work">
+    <meta name="twitter:description" content="A cozy, interactive portfolio for game designer and developer Soufiane Tajri.">
+    <meta name="twitter:image" content="https://soufiane-tajri.netlify.app/preview.svg">
+    <title>Soufiane Tajri — A little world of work</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://polyfork.dev">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+      {"imports":{"three":"https://unpkg.com/three@0.180.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.180.0/examples/jsm/"}}
+    </script>
+  </head>
+  <body>
+    <main id="world" aria-label="Interactive 3D portfolio campground">
+      <noscript>
+        <section class="noscript-content">
+          <h1>Soufiane Tajri — Game designer &amp; developer</h1>
+          <p>This interactive portfolio needs JavaScript to run. You can still explore the work through the regular portfolio and contact links below.</p>
+          <h2>Selected projects</h2>
+          <ul>
+            <li>The Third Perspective — a legal investigation simulation.</li>
+            <li>HOMA — a 2D mobile platformer built in Godot.</li>
+            <li>Paralysis Dream — a psychological horror game.</li>
+            <li>Skyfall — a 2D solo Unity game.</li>
+            <li>Asylum: Fractured Mind — a narrative-driven horror game in development.</li>
+          </ul>
+          <p><a href="https://soufiane-tajri.netlify.app/">Open the regular portfolio</a> · <a href="mailto:sofian16tajri@gmail.com">Email Soufiane</a> · <a href="https://github.com/Sofdev005">GitHub</a> · <a href="https://www.linkedin.com/in/soufiane-tajri-50a488257">LinkedIn</a></p>
+        </section>
+      </noscript>
+    </main>
+
+    <header class="topbar">
+      <a class="brand" href="https://soufiane-tajri.netlify.app/" target="_blank" rel="noopener">
+        <span class="brand-mark">st</span>
+        <span><strong>Soufiane Tajri</strong><small>Game designer &amp; developer</small></span>
+      </a>
+      <div class="top-actions">
+        <a class="portfolio-link" href="https://soufiane-tajri.netlify.app/" target="_blank" rel="noopener">View regular portfolio ↗</a>
+        <span class="world-tag"><i></i> CAMP SIDE</span>
+        <button id="time-of-day-toggle" class="icon-button" type="button" aria-label="Switch to morning" aria-pressed="true" title="Switch to morning">☼</button>
+        <button id="sound-toggle" class="icon-button" type="button" aria-label="Turn relaxing music and sound off" aria-pressed="true" title="Turn relaxing music and sound off">♫</button>
+      </div>
+    </header>
+
+    <nav class="quick-nav" aria-label="Jump to a portfolio section">
+      <span>VISIT</span>
+      <button type="button" data-station="about">About</button>
+      <button type="button" data-station="skills">Skills</button>
+      <button type="button" data-station="projects">Projects</button>
+      <button type="button" data-station="education">Education</button>
+      <button type="button" data-station="contact">Contact</button>
+    </nav>
+
+    <div class="hud" aria-live="polite">
+      <div class="journey">
+        <span class="journey-icon">✳</span>
+        <span><small>YOUR LITTLE JOURNEY</small><strong id="visited">0 <em>places visited</em></strong></span>
+      </div>
+      <div class="nearby" id="nearby"><span class="nearby-dot"></span><span id="nearbyText">Find a place to explore</span></div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <button id="interact-prompt" class="interaction-prompt" type="button" aria-label="Hold E to explore" hidden>
+      <span class="interaction-key"><kbd>E</kbd><span id="interact-progress" class="interaction-fill" role="progressbar" aria-label="Interaction progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></span></span>
+      <span id="interact-label">Hold E to explore</span>
+      <b aria-hidden="true">↵</b>
+    </button>
+    <aside id="station" class="station-card" aria-live="polite" aria-hidden="true" inert></aside>
+
+    <div class="controls-help">
+      <span class="help-icon">⌨</span>
+      <div><strong>Take a wander</strong><small><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>Z</kbd><kbd>Q</kbd><kbd>S</kbd><kbd>D</kbd> (AZERTY) <span>·</span> <kbd>Space</kbd> jump <span>·</span> <kbd>Shift</kbd> sprint <span>·</span> Hold <kbd>E</kbd> interact</small></div>
+    </div>
+
+    <div id="touch-controls" class="touch-controls" aria-label="Movement controls">
+      <div id="joystick" class="joystick" role="application" aria-label="Virtual movement joystick">
+        <span class="joystick-knob"></span>
+      </div>
+      <div class="touch-actions">
+        <button id="sprint" class="sprint-button" type="button" aria-pressed="false" aria-label="Toggle sprint">RUN</button>
+        <button id="jump" class="jump-button" type="button" aria-label="Jump">JUMP <span>↟</span></button>
+      </div>
+    </div>
+
+    <section id="intro" class="intro">
+      <div class="intro-card">
+        <div class="intro-art" aria-hidden="true"><span class="sun"></span><span class="hill hill-back"></span><span class="hill hill-front"></span><span class="intro-goat">🎒</span><span class="intro-flower">✿</span></div>
+        <div class="intro-copy">
+          <p class="eyebrow"><span></span> A PORTFOLIO, WITH ROOM TO ROAM</p>
+          <h1>A little world<br>of <i>big ideas.</i></h1>
+          <p class="intro-description">Meet your backpacker, take a lakeside stroll, and explore the work of game designer &amp; developer Soufiane Tajri.</p>
+          <div class="intro-bottom">
+            <button id="start" type="button" disabled><span id="startLabel">Setting up camp…</span><b>→</b></button>
+            <div class="load-details">
+              <span id="load-status" class="load-status">Loading the campground</span>
+              <progress id="load-progress" max="62" value="0" aria-label="Campground asset loading progress"></progress>
+            </div>
+          </div>
+          <p class="intro-tip">WASD / arrow keys to wander <span>·</span> Space to jump <span>·</span> Hold E at a section</p>
+        </div>
+      </div>
+      <p class="intro-credit">A cozy little world <span>✿</span> Also ready for touch screens</p>
+    </section>
+
+    <div id="fatal" class="fatal" role="alert" hidden></div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
